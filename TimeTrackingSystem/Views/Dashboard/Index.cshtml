@@ -1,0 +1,147 @@
+﻿@{
+    ViewData["Title"] = "Dashboard";
+}
+<script>
+    $(document).ready(function () {
+        var days = ["8 sep Mon", "9 sep Tue", "10 sep Wed", "11 sep Thu", "12 sep Fri"];
+        const data = {
+            "labels": days,
+            "datasets": [
+                {
+                    label: 'Time Spent',
+                    data: [8, 3, 8, 8, 4],
+                    borderColor: 'rgba(90, 34, 139)',
+                    backgroundColor: 'rgba(90, 34, 139)',
+                }
+            ]
+        };
+        var options = {
+            "responsive": true,
+            "title": {
+                "display": true,
+                "text": "Time Spent Between 8-sep to 12-spet",
+                "align": 'center',
+            },
+            "plugins": {
+                "title": {
+                    "display": true,
+                    "text": "Time Spent Between 8-sep to 12-spet",
+                }
+            },
+            "legend": { "position": 'bottom' },
+            "scales": {
+                "xAxes": [{
+                    "gridLines": { "display": false }, "display": true, "scaleLabel": {
+                        "display": false, "labelString": ''
+                    }
+                }],
+                "yAxes": [{
+                    "gridLines": { "display": false }, "display": true, "scaleLabel": {
+                        "display": false, "labelString": ''
+                    }, "ticks": { "beginAtZero": true }
+                }]
+            }
+        }
+        var type = "bar";
+        var weeklyBar = new Chart(document.getElementById("weeklyBar").getContext('2d'), { options, data, type });
+
+        var projects = ["TimeManagementSystem", "GlobalAnalysis", "HRMS"];
+        const projectsdata = {
+            "labels": projects,
+            "datasets": [
+                {
+                    label: 'Time Spent',
+                    data: [10.5,15,8],
+                    backgroundColor: ['rgba(90, 34, 139)', 'rgba(11, 109, 105)', 'rgba(109, 11, 56)'],
+                },
+            ]
+        };
+        var projectsoptions = {
+            "responsive": true,
+            "plugins": {
+                "legend": { "position": 'bottom' },
+                "title": {
+                    "display": true,
+                    "text": "ProjectWise Time Spent",
+                }
+            }
+        }
+        var projetctype = "doughnut";
+        var weeklyProject = new Chart(document.getElementById("weeklyProject").getContext('2d'), {
+            "type": projetctype,
+            "data": projectsdata,
+            "options": projectsoptions
+        });
+
+        var monthlydays = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29","30","31"];
+        const monthlydata = {
+            "labels": monthlydays,
+            "datasets": [
+                {
+                    label: 'Time Spent',
+                    data: [8, 3, 8, 8, 4, 0, 0, 8, 8, 4, 8, 3, 8, 0, 0, 8, 3, 8, 8, 4, 0, 0, 8, 8, 4,1,5,0,0,5,1,2],
+                    borderColor: 'rgba(90, 34, 139)',
+                    backgroundColor: 'rgba(123, 99, 11)',
+                }
+            ]
+        };
+        var monthoptions = {
+            "responsive": true,
+            "title": {
+                "display": true,
+                "text": "This Month's TimeSheet",
+                "align": 'center',
+            },
+            "plugins": {
+                "title": {
+                    "display": true,
+                    "text": "This Month's TimeSheet",
+                }
+            },
+            "legend": { "position": 'bottom', "display": false, },
+            "scales": {
+                "xAxes": [{
+                    "gridLines": { "display": false }, "display": true, "scaleLabel": {
+                        "display": false, "labelString": ''
+                    }
+                }],
+                "yAxes": [{
+                    "gridLines": { "display": false }, "display": true, "scaleLabel": {
+                        "display": false, "labelString": ''
+                    }, "ticks": { "beginAtZero": true }
+                }]
+            }
+        }
+        var monthlytype = "line";
+
+        var monthly = new Chart(document.getElementById("monthly").getContext('2d'), {
+            "type": monthlytype,
+            "data": monthlydata,
+            "options": monthoptions
+        });
+    });
+
+
+</script>
+
+
+<div class="container-fluid">
+    <div class="row col-12">
+        <div class="col-6">
+            <div class="card" style="width: 100%;">
+                <canvas id="weeklyBar" style="height: 300px;"></canvas>
+            </div>
+        </div>
+        <div class="col-6">
+            <div class="card" style="width: 100%;">
+                <canvas id="weeklyProject" style="height: 300px;"></canvas>
+            </div>
+        </div>
+    </div>
+    <div class="col-12">
+        <div class="card" style="width: 100%;">
+            <canvas id="monthly" style="height: 300px;"></canvas>
+        </div>
+    </div>
+</div>
+
